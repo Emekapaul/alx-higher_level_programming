@@ -11,10 +11,10 @@ def main():
     mulResult = mul(a, b)
     divResult = div(a, b)
 
-    print(f'{a} + {b} = {addResult}')
-    print(f'{a} - {b} = {subResult}')
-    print(f'{a} * {b} = {mulResult}')
-    print(f'{a} / {b} = {divResult}')
+    print('{} + {} = {}'.format(a, b, addResult))
+    print('{} - {} = {}'.format(a, b, subResult))
+    print('{} * {} = {}'.format(a, b, mulResult))
+    print('{} / {} = {}'.format(a, b, divResult))
 
 
 if __name__ == "__main__":

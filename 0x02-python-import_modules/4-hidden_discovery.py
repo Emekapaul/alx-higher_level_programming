@@ -4,7 +4,7 @@ import hidden_4
 
 def main():
     output = dir(hidden_4)
-    for name in result:
+    for name in output:
         if (name[:2] == '__'):
             continue
 

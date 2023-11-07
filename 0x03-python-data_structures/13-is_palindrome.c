@@ -1,42 +1,72 @@
 #include "lists.h"
 
 /**
- * is_palindrome - checks whether a list is a palindrome
- * @head: address of the pointer to the list
+ * reverse_listint - reverses a linked list
+ * @head: pointer to the first node in the list
  *
- * Return: 1 if it's a palindrome, else 0
+ * Return: pointer to the first node in the new list
+ */
+void reverse_listint(listint_t **head)
+{
+	listint_t *prev = NULL;
+	listint_t *current = *head;
+	listint_t *next = NULL;
+
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+
+	*head = prev;
+}
+
+/**
+ * is_palindrome - checks if a linked list is a palindrome
+ * @head: double pointer to the linked list
+ *
+ * Return: 1 if it is, 0 if not
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *fol = NULL, *adv = NULL;
-	int fol_node, adv_node, count;
+	listint_t *slow = *head, *fast = *head, *temp = *head, *dup = NULL;
 
-	if (!(*head) || !((*head)->next))
+	if (*head == NULL || (*head)->next == NULL)
 		return (1);
-	fol = (*head)->next;
-	adv = fol;
-	fol_node = adv_node = 2;
-	while (adv->next)
+
+	while (1)
 	{
-		adv = adv->next;
-		adv_node++;
-	}
-	if ((*head)->n != adv->n)
-		return (0);
-	while (fol != adv && fol->next != adv)
-	{
-		adv_node--;
-		adv = fol->next;
-		count = fol_node + 1;
-		while (count < adv_node)
+		fast = fast->next->next;
+		if (!fast)
 		{
-			adv = adv->next;
-			count++;
+			dup = slow->next;
+			break;
 		}
-		if (fol->n != adv->n)
-			return (0);
-		fol = fol->next;
-		fol_node++;
+		if (!fast->next)
+		{
+			dup = slow->next->next;
+			break;
+		}
+		slow = slow->next;
 	}
-	return (1);
+
+	reverse_listint(&dup);
+
+	while (dup && temp)
+	{
+		if (temp->n == dup->n)
+		{
+			dup = dup->next;
+			temp = temp->next;
+		}
+		else
+			return (0);
+	}
+
+	if (!dup)
+		return (1);
+
+	return (0);
 }

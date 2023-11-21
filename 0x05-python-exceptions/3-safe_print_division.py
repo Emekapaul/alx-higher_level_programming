@@ -1,11 +1,13 @@
 #!/usr/bin/python3
+
 def safe_print_division(a, b):
-    """Print quotien."""
 
     try:
-        result = a / b
+        div_num = a / b
+
     except ZeroDivisionError:
-        result = None
+        div_num = None
+
     finally:
-        print("Inside result: {}".format(result))
-    return (result)
+        print("Inside result: {}".format(div_num))
+        return div_num

@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-"""Define a class Square."""
+# 0-square.py
+"""This module provides a class that does nothing"""
 
 
 class Square:
-    """Represent a square."""
+    """This is a class that does nothing"""
     pass

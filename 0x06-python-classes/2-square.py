@@ -1,19 +1,27 @@
 #!/usr/bin/python3
 
-"""A class Square."""
+# 2-square.py
+"""This module defines a class, creates and initializes an instance"""
 
 
 class Square:
-    """Represent a square."""
+    """A class that defines a square and also creates an object"""
 
     def __init__(self, size=0):
-        """Initialize a new Square.
+        """It instantiates the object
 
         Args:
-            size (int): The size of the new square.
+            size (int) = The size of square
+
+        Raises:
+            TypeError: If size is not an integer.
+            ValueError: If size is less than 0.
+
         """
+
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
-        elif size < 0:
+        elif (size < 0):
             raise ValueError("size must be >= 0")
-        self.__size = size
+        else:
+            self.__size = size

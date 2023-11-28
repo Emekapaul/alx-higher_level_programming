@@ -19,7 +19,9 @@ class Rectangle:
 
     def __repr__(self):
         """repr() should return a string representation of the rectangle:
-            to be able to recreate a new instance by using eval()"""
+            to be able to recreate a new instance by using eval()
+
+        """
         return "Rectangle({}, {})".format(self.__width, self.__height)
 
     def __str__(self):
@@ -29,10 +31,10 @@ class Rectangle:
         if (self.__width == 0 or self.__height == 0):
             return result
 
-        for i, h in enumerate(range(self.height)):
-            for j in range(self.width):
+        for i, h in enumerate(range(self.__height)):
+            for j in range(self.__width):
                 result += "#"
-            if (i != (self.height - 1)):
+            if (i != (self.__height - 1)):
                 result += "\n"
         return result
 

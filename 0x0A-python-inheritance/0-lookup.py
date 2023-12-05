@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-#0-lookup.py
+# 0-lookup.py
 """This modul provides list of available attributes and methods"""
 
 

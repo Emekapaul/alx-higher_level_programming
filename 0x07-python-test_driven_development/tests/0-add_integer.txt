@@ -1,110 +1,59 @@
-===================================
-How to Use ``0-add_integer`` Module
-===================================
+====================================
+How to use``0-add_integer`` modul
+====================================
 
-This module defines a function that adds two integer:``add_integer(a, b=98)``.
+The ``0-add_integer`` modul defines the function``add_integer(a, b=98)``
 
-Usage: ``add_integer(a, b)`` | ``add_integer(a)``
-======
-
-Atleast one argument must be passed.
-If only one argument is passed, the value `98` is used as the second.
-Arguments must be float or int.
-Return: the sum.
-
-Examples with successfull tests
-===============================
-
-::  First, import the module.
->>> add_integer = __import__('0-add_integer').add_integer
-
->>> add_integer(1, 2)
-3
-
->>> add_integer(1, -2)
--1
-
->>> add_integer(-1, 2)
-1
-
-::  floats are casted to ints before addition is performed.
->>> add_integer(2.0, 3.0)
-5
-
->>> add_integer(2.9, 0.2)
-2
-
->>> add_integer(-2.9, -0.2)
--2
-
->>> add_integer(2.3, -3)
--1
-
-::  When only one (1) argument is passed.
->>> add_integer(2)
-100
-
->>> add_integer(0)
-98
-
->>> add_integer(-10)
-88
-
-Examples with Exceptions
+``add_integer(a, b=98)``
 ========================
 
-::  When unaccepted types- strings, lists, tuples,
-    dictionaries, etc, that non-digit types are
-    passed for either of the arguments.
+This function adds 2 integers, It returns sum of 2 integers.
+Ateast one argument must be passed, if only one argument is passed the
+the value ``b=98`` is uesd as the second argument for the function.
+The arguments must be float or int.
 
->>> add_integer()
-Traceback (most recent call last):
-TypeError: add_integer() missing 1 required positional argument: 'a'
+Usage: ``add_integer(a, b=98)`` | ``add_integer(a)``
+====================================================
 
->>> add_integer("hello", 0)
-Traceback (most recent call last):
-TypeError: a must be an integer
+Examples with successful tests:
+===============================
 
->>> add_integer(0, "dlorw")
-Traceback (most recent call last):
-TypeError: b must be an integer
+First import the modul
+	>>> add_integer = __import__('0-add_integer').add_integer
 
->>> add_integer([], 9)
-Traceback (most recent call last):
-TypeError: a must be an integer
+Adds 2 integers
+	>>> add_integer(1, 2)
+	3
 
->>> add_integer((0,))
-Traceback (most recent call last):
-TypeError: a must be an integer
+Add an integer and a negative number
+	>>> add_integer(100, -2)
+	98
 
->>> add_integer(set(), 9)
-Traceback (most recent call last):
-TypeError: a must be an integer
+Adds an int plus the default value for the second argument b=98
+	>>> add_integer(2)
+	100
 
->>> add_integer(None)
-Traceback (most recent call last):
-TypeError: a must be an integer
+Adds a float to an int which are typecasted to int and the function return
+int
+	>>> add_integer(100.3, -2)
+	98
 
->>> add_integer(6.3, None)
-Traceback (most recent call last):
-TypeError: b must be an integer
+Adds two floats which are typecasted to int and the function return int
+	>>> add_integer(2.2, 3.2)
+	5
 
->>> add_integer("hello", "world")
-Traceback (most recent call last):
-TypeError: a must be an integer
+Returns TypeError if non int | float value is passed to argument `a`
+	>>> add_integer("j", 9)
+	Traceback (most recent call last):
+	TypeError: a must be an integer
 
->>> add_integer(1, float('nan'))
-Traceback (most recent call last):
-ValueError: cannot convert float NaN to integer
+Returns TypeError if non int | float value is passed to argument `b`
+	>>> add_integer(9, "j")
+	Traceback (most recent call last):
+	TypeError: b must be an integer
 
->>> add_integer(float('nan'))
-Traceback (most recent call last):
-ValueError: cannot convert float NaN to integer
+Returns error if no value is passed:
+	>>> add_integer()
+	Traceback (most recent call last):
+	TypeError: add_integer() missing 1 required positional argument: 'a'
 
->>> add_integer(float('inf'))
-Traceback (most recent call last):
-OverflowError: cannot convert float infinity to integer
-     
->>> add_integer(10, float('inf'))
-Traceback (most recent call last):
-OverflowError: cannot convert float infinity to integer

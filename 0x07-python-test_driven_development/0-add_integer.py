@@ -1,21 +1,23 @@
 #!/usr/bin/python3
-"""0-add_integer module."""
 
+"""This 0-add_integer modul defines the function add_integer(a, b=98):"""
 
 def add_integer(a, b=98):
-    """Compute the sum of two ints a and b.
+    """function that adds 2 integers:
 
     Args:
-        a (int): the first operand.
-        b (int): the second operand.
+        a (int | float): Accepts int or float values.
+        b (int | float): Accepts int or float values.
 
-    Return:
-        int: the sum.
+    Returns:
+        int. Floats are typecasted to int before it's returned.
     """
-    if type(a) not in [int, float]:
-        raise TypeError("a must be an integer")
+    if isinstance(a, float) or isinstance(b, float):
+        return int(a) + int(b)
 
-    if type(b) not in [int, float]:
+    if not isinstance(a, int) or isinstance(a, float):
+        raise TypeError("a must be an integer")
+    if not isinstance(b, int) or isinstance(b, float):
         raise TypeError("b must be an integer")
 
     return int(a) + int(b)

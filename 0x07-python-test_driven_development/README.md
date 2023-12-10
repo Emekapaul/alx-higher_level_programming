@@ -1,1 +1,1 @@
-This project is about 0x07. Python - Test-driven development
+This project is about 0x07. Python - Test-driven development in python

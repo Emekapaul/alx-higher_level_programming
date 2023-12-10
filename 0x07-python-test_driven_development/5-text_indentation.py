@@ -1,21 +1,26 @@
 #!/usr/bin/python3
-"""5-text_indentation Module."""
+
+"""The 5-text_indentation modul defines the func: text_indentation(text)"""
 
 
 def text_indentation(text):
-    """Prints 2 new lines after any of '.', '?' or ':' in a text.
+    """function that prints a text with 2 new lines after each of these
+    characters: ., ? and :
 
     Args:
-        text(str): text input.
+        text (string): The string to print
     """
-    if type(text) is not str:
+
+    if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    text_dup = text[:]
+    for i, ch in enumerate(text):
+        if ch in [".", "?", ":"]:
+            print(ch)
+            print()
 
-    for delim in ".?:":
-        stripped_split = ([splitted.strip(' ')
-                           for splitted in text_dup.split(delim)])
-        text_dup = (delim + "\n\n").join(stripped_split)
+        elif text[i - 1] in [".", "?", ":"] and ch == " ":
+            pass
 
-    print(text_dup, end="")
+        else:
+            print(ch, end="")

@@ -2,6 +2,7 @@
 
 """This 0-add_integer modul defines the function add_integer(a, b=98):"""
 
+
 def add_integer(a, b=98):
     """function that adds 2 integers:
 

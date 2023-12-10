@@ -1,61 +1,56 @@
-===================================
-How to use ``3-say_my_name`` module
-===================================
+======================================
+How to use the ``3-say_my_name`` modul
+======================================
 
-This module defines a function ``say_my_name(first_name, last_name="")``
-that prints My name is <first name> <last name>.
+This modul defines the function ``say_my_name(first_name, last_name=""):``
 
-Usage: ``say_my_name(first_name, last_name)`` | ``say_my_name(first_name)``
-=====
+Usage: say_my_name(first_name, last_name=""):
+==============================================
 
-`first_name` and `last_name` must be of type string.
-Atleast `first_name` must always be provided.
+# This function prints My name is <first name> <last name>
+# first_name and last_name must be strings 
+# If first_name is not string raise TypeError with the message
+"first_name must be a string"
+# If first_name is not string raise TypeError with the message
+"last_name must be a string"
 
-Examples with successfull tests
-===============================
+Examples of successful tests:
+==============================
 
-::  import the module.
->>> say_my_name = __import__('3-say_my_name').say_my_name
+First import modul
+	>>> say_my_name = __import__('3-say_my_name').say_my_name
 
->>> say_my_name("Jon")
-My name is Jon 
+Prints names that are strings
+	>>> say_my_name("John", "Smith")
+	My name is John Smith
 
->>> say_my_name("Snow")
-My name is Snow 
+Passing one argument:
+	>>> say_my_name("John")
+	My name is John 
 
->>> say_my_name("DJ", "Khalid")
-My name is DJ Khalid
+Raises TypeError arguments are empty:	
+	>>> say_my_name()
+	Traceback (most recent call last):
+	TypeError: say_my_name() missing 1 required positional argument: 'first_name'
 
-Examples with Exceptions
-========================
+Raises TypeError second argument is not string:
+	>>> say_my_name("John", 6)
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
 
->>> say_my_name(0)
-Traceback (most recent call last):
-TypeError: first_name must be a string
+Raises TypeError if first argument is not string:
 
->>> say_my_name("Pi", 3.142)
-Traceback (most recent call last):
-TypeError: last_name must be a string
+	>>> say_my_name(6, "John")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
 
->> say_my_name(None)
-Traceback (most recent call last):
-TypeError: first_name must be a string
+Raises TypeError if list is passed as first argument:
+	>>> say_my_name([], "Smith")
+	Traceback (most recent call last):
+	TypeError: first_name must be a string
 
->> say_my_name("NULL", None)
-Traceback (most recent call last):
-TypeError: last_name must be a string
+Raises TypeError if list is passed as second argument:
+	>>> say_my_name("Smith", [])
+	Traceback (most recent call last):
+	TypeError: last_name must be a string
 
->>> say_my_name([])
-Traceback (most recent call last):
-TypeError: first_name must be a string
-
->>> say_my_name("Tyrion", "The Imp", "Lannister")
-... #doctest: +NORMALIZE_WHITESPACE
-Traceback (most recent call last):
-TypeError: say_my_name() takes from 1 to 2 positional arguments
-    but 3 were given
-
->>> say_my_name() #doctest: +NORMALIZE_WHITESPACE
-Traceback (most recent call last):
-TypeError: say_my_name() missing 1 required 
-    positional argument: 'first_name'

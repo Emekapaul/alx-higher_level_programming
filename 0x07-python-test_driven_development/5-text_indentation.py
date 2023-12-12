@@ -14,12 +14,16 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
+    b = True
     for i, ch in enumerate(text):
-        if ch in [".", "?", ":"]:
+        if b and text[0] == " ":
+            b = False
+            pass
+        elif ch in [".", "?", ":"]:
             print(ch)
             print()
 
-        elif text[i - 1] in [".", "?", ":"] and ch == " ":
+        elif i > 0 and text[i - 1] in [".", "?", ":", " "] and ch == " ":
             pass
 
         else:

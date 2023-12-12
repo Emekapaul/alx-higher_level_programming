@@ -19,78 +19,6 @@ first import a modul
 	>>> text_indentation = __import__('5-text_indentation').text_indentation
 
 print text strings:
->>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. """)
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-<BLANKLINE>
-
-prints empty string
->>> text_indentation("")
-
-Raises TypeError when no value is passed
->>> text_indentation()
-Traceback (most recent call last):
-TypeError: text_indentation() missing 1 required positional argument: 'text'
-
-raises TypeError when int is passed
->>> text_indentation(5)
-Traceback (most recent call last):
-TypeError: text must be a string
-
-raises TypeError when empty list is passed
->>> text_indentation([])
-Traceback (most recent call last):
-TypeError: text must be a string
-
-raises TypeError when a list is passed
->>> text_indentation(["lorem"])
-Traceback (most recent call last):
-TypeError: text must be a string
-
-prints strings
->>> text_indentation("Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
-... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
-... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud")
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-<BLANKLINE>
-Quonam modo?
-<BLANKLINE>
-Utrum igitur tibi litteram videor an totas paginas commovere?
-<BLANKLINE>
-Non autem hoc:
-<BLANKLINE>
-igitur ne illud quidem.
-<BLANKLINE>
-Fortasse id optimum, sed ubi illud
-
->>> text_indentation("lorem.ipsum")
-lorem.
-<BLANKLINE>
-ipsum
-
->>> text_indentation("lorem ipsum")
-lorem ipsum
-
->>> text_indentation("lorem. ipsum? quonam: dolor")
-lorem.
-<BLANKLINE>
-ipsum?
-<BLANKLINE>
-quonam:
-<BLANKLINE>
-dolor
-
->>> text_indentation(".?:")
-.
-<BLANKLINE>
-?
-<BLANKLINE>
-:
-<BLANKLINE>
-
->>> text_indentation(None)
-Traceback (most recent call last):
-TypeError: text must be a string
-
 >>> text_indentation("""Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
 ... Quonam modo? Utrum igitur tibi litteram videor an totas paginas commovere? \
 ... Non autem hoc: igitur ne illud quidem. Fortasse id optimum, sed ubi illud: \
@@ -127,3 +55,88 @@ Sin aliud quid voles, postea.
 Quae animi affectio suum cuique tribuens atque hanc, quam dico.
 <BLANKLINE>
 Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres
+
+prints empty string
+	>>> text_indentation("")
+
+Raises TypeError when no value is passed
+	>>> text_indentation()
+	Traceback (most recent call last):
+	TypeError: text_indentation() missing 1 required positional argument: 'text'
+
+raises TypeError when int is passed
+	>>> text_indentation(5)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+raises TypeError when empty list is passed
+	>>> text_indentation([])
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+raises TypeError when a list is passed
+	>>> text_indentation(["lorem"])
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+prints strings
+	>>> text_indentation("lorem.ipsum")
+	lorem.
+	<BLANKLINE>
+	ipsum
+
+prints strings
+	>>> text_indentation("lorem ipsum")
+	lorem ipsum
+
+prints strings
+	>>> text_indentation("lorem. ipsum? quonam: dolor")
+	lorem.
+	<BLANKLINE>
+	ipsum?
+	<BLANKLINE>
+	quonam:
+	<BLANKLINE>
+	dolor
+
+prints strings
+	>>> text_indentation(".?:")
+	.
+	<BLANKLINE>
+	?
+	<BLANKLINE>
+	:
+	<BLANKLINE>
+
+Raises TypeError when integers is passed
+	>>> text_indentation(1234)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+Raises TypeError when dictionary is passed
+	>>> text_indentation({"1": "one", "two": 2})
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+	Raises TypeError when None is passed
+	>>> text_indentation(None)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+prints strings
+	>>> text_indentation("  abcd.  .:.  1234.   ")
+	abcd.
+	<BLANKLINE>
+	.
+	<BLANKLINE>
+	:
+	<BLANKLINE>
+	.
+	<BLANKLINE>
+	1234.
+	<BLANKLINE>
+
+prints strings
+	>>> text_indentation("  abcd    1234.   ")
+	abcd 1234.
+	<BLANKLINE>

@@ -1,13 +1,12 @@
 #!/usr/bin/python3
-"""1-my_list Module."""
+
+"""The 1-my_list has the function: print_sorted(self)"""
 
 
 class MyList(list):
-    """A sub-class of python list.
+    """The class MyList that inherits from list"""
 
-    Arg:
-        list(class): the python list class.
-    """
     def print_sorted(self):
-        """Print out the elements in the list in sorted order."""
+        """Function that prints the list, but sorted (ascending sort)"""
+
         print(sorted(self))

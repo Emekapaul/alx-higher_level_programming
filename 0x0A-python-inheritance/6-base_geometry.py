@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-"""6-base_geometry Module."""
+
+"""6-base_geometry modul contains class: BaseGeometry"""
 
 
 class BaseGeometry:
-    """BaseGeometry class."""
+    """BaseGeometry class"""
+
     def area(self):
-        """Compute area of the class."""
+        """function is not implemented"""
+
         raise Exception("area() is not implemented")

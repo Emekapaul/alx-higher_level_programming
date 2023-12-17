@@ -1,46 +1,55 @@
 #!/usr/bin/python3
-"""Square module: defines a class square."""
+"""Modul that contains class Square which inherits from class Rectangle"""
+
 from models.rectangle import Rectangle
-import inspect
 
 
 class Square(Rectangle):
-    """Rectangle class definition."""
+    """Class Square that inherits from Rectangle"""
+
     def __init__(self, size, x=0, y=0, id=None):
-        """Initialize attributes during instanciation."""
-        super().__init__(size, size, x, y, id)
+        """Class constructor: """
+
+        Rectangle.__init__(self, size, size, x, y, id)
+
+    def __str__(self):
+        """The function to print to stdout"""
+
+        return f"[{type(self).__name__}] ({self.id}) {self.x}/{self.y}"\
+               f" - {self.width}"
 
     @property
     def size(self):
+        """Getter function for size"""
         return self.width
 
     @size.setter
-    def size(self, value):
-        self.width = value
-        self.height = value
+    def size(self, size):
+        """setter function for size"""
 
-    def __str__(self):
-        """Return the string representation of a Square instance."""
-        return ("[Square] ({}) {}/{} - {}"
-                .format(self.id, self.x, self.y, self.width))
+        if type(size) is not int:
+            raise TypeError("width must be an integer")
+
+        if size <= 0:
+            raise ValueError("width must be > 0")
+
+        self.width = size
+        self.height = size
 
     def update(self, *args, **kwargs):
-        """Update the values of attributes of a square instance."""
-        attrList = ['id', 'size', 'x', 'y']
-        for i, arg in enumerate(args):
-            if i >= len(attrList):
-                break
-            attr = attrList[i]
-            setattr(self, attr, arg)
-        for key in kwargs.keys():
-            if key in attrList and (attrList.index(key) >= len(args)):
-                i = attrList.index(key)
-                setattr(self, attrList[i], kwargs[key])
+        """Update function that assigns attribute"""
+
+        upd_attributes = ["id", "size", "x", "y"]
+
+        if args is not None:
+            for i, value in enumerate(args):
+                if i < len(upd_attributes):
+                    setattr(self, upd_attributes[i], value)
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dictionary(self):
-        """Return a dictionary representation of a Square instance."""
-        dicto = dict(inspect.getmembers(self, lambda attrs:
-                                        not (inspect.isroutine(attrs))))
-        return dict([kval for kval in dicto.items()
-                     if not kval[0].startswith('_')
-                     if not kval[0] in ['height', 'width']])
+        """Function that returns dictionary representation of a square"""
+
+        return {'id': self.id, 'x': self.x, 'size': self.width, 'y': self.y}

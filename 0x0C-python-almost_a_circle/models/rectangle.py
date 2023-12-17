@@ -1,102 +1,123 @@
 #!/usr/bin/python3
-"""rectangle module: Defines a Rectangle class that is a subclass
-of th Base class.
-"""
+"""The rectangle modul"""
+
 from models.base import Base
-import inspect
 
 
 class Rectangle(Base):
-    """Defines an object of <type Rectangle>."""
+    """Class rectangle that inherits from base class"""
+
     def __init__(self, width, height, x=0, y=0, id=None):
-        """Initialize instance attributes during instanciation."""
+        """Class constructor: """
+        Base.__init__(self, id)
+        """constructor for inherited class"""
+
         self.width = width
         self.height = height
         self.x = x
         self.y = y
-        super().__init__(id)
 
     @property
     def width(self):
+        """Getter function for width"""
         return self.__width
 
     @width.setter
-    def width(self, value):
-        if type(value) is not int:
-            raise TypeError('width must be an integer')
-        if value <= 0:
-            raise ValueError('width must be > 0')
-        self.__width = value
+    def width(self, width):
+        """Setter function for width"""
+        if type(width) is not int:
+            raise TypeError("width must be an integer")
+
+        if width <= 0:
+            raise ValueError("width must be > 0")
+
+        self.__width = width
 
     @property
     def height(self):
+        """Getter function for height"""
         return self.__height
 
     @height.setter
-    def height(self, value):
-        if type(value) is not int:
-            raise TypeError('height must be an integer')
-        if value <= 0:
-            raise ValueError('height must be > 0')
-        self.__height = value
+    def height(self, height):
+        """Setter function for height"""
+
+        if type(height) is not int:
+            raise TypeError("height must be an integer")
+
+        if height <= 0:
+            raise ValueError("height must be > 0")
+
+        self.__height = height
 
     @property
     def x(self):
+        """Getter function for x"""
         return self.__x
 
     @x.setter
-    def x(self, value):
-        if type(value) is not int:
-            raise TypeError('x must be an integer')
-        if value < 0:
-            raise ValueError('x must be >= 0')
-        self.__x = value
+    def x(self, x):
+        """Setter function for x"""
+
+        if type(x) is not int:
+            raise TypeError("x must be an integer")
+
+        if x < 0:
+            raise ValueError("x must be >= 0")
+
+        self.__x = x
 
     @property
     def y(self):
+        """Getter function for y"""
         return self.__y
 
     @y.setter
-    def y(self, value):
-        if type(value) is not int:
-            raise TypeError('y must be an integer')
-        if value < 0:
-            raise ValueError('y must be >= 0')
-        self.__y = value
+    def y(self, y):
+        """Setter function for y"""
 
-    def __str__(self):
-        return ("[Rectangle] ({}) {}/{} - {}/{}"
-                .format(self.id, self.x, self.y, self.width, self.height))
+        if type(y) is not int:
+            raise TypeError("y must be an integer")
+
+        if y < 0:
+            raise ValueError("y must be >= 0")
+
+        self.__y = y
 
     def area(self):
-        """Compute the area of this triangle."""
-        return self.width * self.height
+        """function that computes the area"""
+
+        return self.__width * self.__height
 
     def display(self):
-        """Print this rectangle with using the character '#'."""
-        for i in range(self.y):
-            print()
-        for i in range(self.height):
-            if self.x:
-                print(' ' * self.x, end='')
-            print('#' * self.width)
+        """It prints rectangle instance to stdout"""
 
-    def update(self, *args,  **kwargs):
-        """Update the value of attributes."""
-        attrList = ['id', 'width', 'height', 'x', 'y']
-        for i, arg in enumerate(args):
-            if i >= len(attrList):
-                break
-            attr = attrList[i]
-            setattr(self, attr, arg)
-        for key in kwargs.keys():
-            if key in attrList and (attrList.index(key) >= len(args)):
-                i = attrList.index(key)
-                setattr(self, attrList[i], kwargs[key])
+        print(end="\n" * self.__y)
+        for h in range(self.__height):
+            print(" " * self.__x, end="")
+            print("#" * self.__width, end="")
+            print()
+
+    def __str__(self):
+        """Function that prints to stdout"""
+
+        return f"[{type(self).__name__}] ({self.id}) {self.__x}/{self.__y} - "\
+               f"{self.__width}/{self.__height}"
+
+    def update(self, *args, **kwargs):
+        """Function that updates the class rectangle"""
+        upd_attributes = ["id", "width", "height", "x", "y"]
+
+        if args is not None:
+            for i, value in enumerate(args):
+                if i < len(upd_attributes):
+                    setattr(self, upd_attributes[i], value)
+
+        for key, value in kwargs.items():
+            setattr(self, key, value)
 
     def to_dictionary(self):
-        """Returns a dictionary representation of a rectangle."""
-        dicto = dict(inspect.getmembers(self, lambda attrs:
-                                        not (inspect.isroutine(attrs))))
-        return dict([kval for kval in dicto.items()
-                     if not kval[0].startswith('_')])
+        """function returns dictionary representation of a Rectangle:"""
+
+        return {'x': self.__x, 'y': self.__y, 'id': self.id,
+                'height': self.__height, 'width': self.__width}

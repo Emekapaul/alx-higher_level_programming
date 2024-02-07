@@ -1,1 +1,1 @@
-Introduction to database and mysql.
+Introduction to database and mysql. Implementation of mysql.

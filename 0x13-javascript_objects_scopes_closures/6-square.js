@@ -1,19 +1,17 @@
 #!/usr/bin/node
+const SquareP = require('./5-square');
 
-const SquareParent = require('./5-square');
-
-class Square extends SquareParent {
-  constructor (size) {
-    super(size, size);
-    this.size = this.width;
-  }
-
+class Square extends SquareP {
   charPrint (c) {
-    if (!c) super.print();
-    else {
-      for (let i = 0; i < this.size; i++) {
-        console.log('C'.repeat(this.size));
+    if (c === undefined) {
+      c = 'X';
+    }
+    for (let i = 0; i < this.height; i++) {
+      let s = '';
+      for (let j = 0; j < this.width; j++) {
+        s += c;
       }
+      console.log(s);
     }
   }
 }

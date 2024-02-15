@@ -1,1 +1,1 @@
-JavaScript warm up
+JavaScript warm up. Implementing javascript.

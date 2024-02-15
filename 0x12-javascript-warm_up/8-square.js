@@ -1,5 +1,14 @@
 #!/usr/bin/node
 
-const size = parseInt(process.argv.slice(2)[0]);
-if (!size) console.log('Missing size');
-else for (let i = 0; i < size; i++) console.log('X'.repeat(size));
+const argNum = parseInt(process.argv[2]);
+
+if (Number.isInteger(argNum)) {
+  for (let i = 0; i < argNum; i++) {
+    for (let j = 0; j < argNum; j++) {
+      process.stdout.write('X');
+    }
+    console.log();
+  }
+} else {
+  console.log('Missing size');
+}

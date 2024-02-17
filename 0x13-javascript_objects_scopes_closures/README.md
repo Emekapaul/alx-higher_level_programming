@@ -1,1 +1,1 @@
-javascript_objects_scopes_closures
+javascript_objects_scopes_closures. Implementing class objects.

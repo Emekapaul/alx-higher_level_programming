@@ -1,19 +1,31 @@
 #!/usr/bin/python3
-""" prints the State object with the name passed as argument from the database
-"""
-import sys
+"""Prints all City objects from the database hbtn_0e_14_usa."""
+
 from model_state import Base, State
 from model_city import City
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, relationship
+from urllib.parse import quote_plus
+import sys
 
+if __name__ == '__main__':
+    try:
+        uname = quote_plus(sys.argv[1])
+        passwd = quote_plus(sys.argv[2])
+        dbname = quote_plus(sys.argv[3])
+        dburl = f'mysql+mysqldb://{uname}:{passwd}@localhost/{dbname}'
+        engine = create_engine(dburl, pool_pre_ping=True)
+        Session = sessionmaker(bind=engine)
 
-if __name__ == "__main__":
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
-                           .format(sys.argv[1], sys.argv[2], sys.argv[3]))
-    Base.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    for instance in (session.query(State.name, City.id, City.name)
-                     .filter(State.id == City.state_id)):
-        print(instance[0] + ": (" + str(instance[1]) + ") " + instance[2])
+        State.cities = relationship("City",
+                                    order_by=City.id,
+                                    back_populates='state')
+
+        Base.metadata.create_all(engine)
+
+        with Session() as session:
+            for city in session.query(City).order_by(City.id):
+                print(f'{city.state.name}: ({city.id}) {city.name}')
+
+    except Exception as e:
+        print(f'An error occured: {e}')

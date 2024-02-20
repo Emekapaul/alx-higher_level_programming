@@ -1,1 +1,1 @@
-# MORE QUERIES.
+# MORE QUERIES. Implementation of sql.

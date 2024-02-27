@@ -1,28 +1,35 @@
 #!/usr/bin/python3
-"""Takes in arguments and displays all values in the states table of
-hbtn_0e_0_usa where name matches the argument. Safe from SQLi.
-"""
+"""Write a script that takes in an argument and displays all
+values in the states table of hbtn_0e_0_usa where name matches the argument."""
 import MySQLdb
-import sys
+from sys import argv
 
 
-if __name__ == '__main__':
-    dbconn = MySQLdb.connect(
-        user=sys.argv[1],
-        password=sys.argv[2],
-        database=sys.argv[3]
+def main():
+    db = MySQLdb.connect(
+        host='localhost',
+        port=3306,
+        user=argv[1],
+        password=argv[2],
+        db=argv[3]
     )
 
-    dbcursor = dbconn.cursor()
-    dbcursor.execute("""
-                     SELECT * FROM states
-                     WHERE name LIKE %s
-                     ORDER BY id ASC
-                     """, (sys.argv[4], ))
+    cur = db.cursor()
 
-    dbres = dbcursor.fetchall()
-    for row in dbres:
+    cur.execute("""
+        SELECT *
+        FROM states
+        WHERE states.name LIKE BINARY %s
+        ORDER BY states.id ASC""", (argv[4],))
+
+    query_rows = cur.fetchall()
+
+    for row in query_rows:
         print(row)
 
-    dbcursor.close()
-    dbconn.close()
+    cur.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    main()

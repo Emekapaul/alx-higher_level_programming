@@ -1,1 +1,1 @@
-MySQLdb and Object Relational Mapping
+MySQLdb and Object Relational Mapping.

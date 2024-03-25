@@ -1,26 +1,31 @@
 #!/usr/bin/python3
-"""Delete all State objects with a name containing the letter a from the
-database hbtn_0e_6_usa"""
-from model_state import Base, State
+"""Write a script that deletes all State objects with a
+name containing the letter a from the database hbtn_0e_6_usa"""
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import sys
-from urllib.parse import quote_plus
+from model_state import Base, State
+from sys import argv
 
 
-if __name__ == '__main__':
+def main():
+    """Main function"""
     try:
-        uname = quote_plus(sys.argv[1])
-        passwd = quote_plus(sys.argv[2])
-        dbname = quote_plus(sys.argv[3])
-        dburl = f'mysql+mysqldb://{uname}:{passwd}@localhost/{dbname}'
+        dburl = f'mysql+mysqldb://{argv[1]}:{argv[2]}@localhost:3306/{argv[3]}'
         engine = create_engine(dburl, pool_pre_ping=True)
+
         Session = sessionmaker(bind=engine)
 
         with Session() as session:
-            for state in session.query(State).filter(State.name.like('%a%')):
-                session.delete(state)
+            for inst in session.query(State).filter(State.name.like('%a%')). \
+                    order_by(State.id):
+                session.delete(inst)
+
             session.commit()
 
     except Exception as e:
-        print(f'An error occured {e}')
+        print(f'An error occured: {e}')
+
+
+if __name__ == "__main__":
+    main()

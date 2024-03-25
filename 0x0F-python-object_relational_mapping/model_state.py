@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Contains a class definition of State and a declarative base model Base.
-"""
-from sqlalchemy import Column, String, Integer
-from sqlalchemy.orm import declarative_base
+"""Write a python file that contains the class definition
+of a State and an instance Base = declarative_base():"""
+
+from sqlalchemy import String, Column, Integer
+from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 
